@@ -4,7 +4,17 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+# Java
 *.class
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / Tools
+.DS_Store
+*.log
 
 ### STS ###
 .apt_generated
