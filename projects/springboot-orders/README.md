@@ -10,6 +10,16 @@ mvn spring-boot:run
 
 ### End points
 - `GET /health` -> Returns "OK"
+- `GET /orders`-> Returns list of mock orders.
+```
+Example Response
+[
+    {"id": 1, "itemName": "Laptop", "quantity": 1, "price": 70000.00},
+    {"id": 2, "itemName": "Mouse", "quantity": 2, "price": 1500.5},
+    {"id": 3, "itemName": "Keyboard", "quantity": 1, "price": 3200.00},
+]
+```
+- 
 
 ### Tech Stack
 - Java 25
