@@ -59,6 +59,29 @@ GET http://localhost:8080/orders/1
 400 Bad Request
 ```
 
+- `PUT /orders/{id}` -> Update an existing order.
+**Request**
+```json
+{
+  "itemName": "Gaming Laptop",
+  "quantity": 1,
+  "price": 90000.00
+}
+```
+**Success (200)**
+```json
+{
+  "id": 1,
+  "itemName": "Gaming Laptop",
+  "quantity": 1,
+  "price": 90000.0
+}
+```
+**Failure (404)**
+```STATUS
+404 Not Found
+```
+
 ### Tech Stack
 - Java 25
 - Spring Boot
