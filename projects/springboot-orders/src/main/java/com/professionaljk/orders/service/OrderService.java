@@ -40,4 +40,21 @@ public class OrderService {
                 && o.getQuantity() > 0
                 && o.getPrice() >= 0;
     }
+
+    public Optional<Order> updateOrder(int id, Order update) {
+        for (int i = 0; i < orders.size(); i++) {
+            Order existing = orders.get(i);
+            if (existing.getId() == id) {
+                // create new Order object with same id
+                Order updated = new Order(id,
+                        update.getItemName() != null ? update.getItemName() : existing.getItemName(),
+                        update.getQuantity() != 0 ? update.getQuantity() : existing.getQuantity(),
+                        update.getPrice() != 0.0 ? update.getPrice() : existing.getPrice()
+                );
+                orders.set(i, updated);
+                return Optional.of(updated);
+            }
+        }
+        return Optional.empty();
+    }
 }
