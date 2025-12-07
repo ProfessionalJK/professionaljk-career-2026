@@ -36,6 +36,29 @@ GET http://localhost:8080/orders/1
 }
 ```
 
+- `POST /orders` -> Create a new order.
+**Request**
+```json
+{
+  "itemName": "Monitor",
+  "quantity": 1,
+  "price": 15000.00
+}
+```
+**Success (201)**
+```json
+{
+  "id": 4,
+  "itemName": "Monitor",
+  "quantity": 1,
+  "price": 15000.0
+}
+```
+**Failure (400)**
+```STATUS
+400 Bad Request
+```
+
 ### Tech Stack
 - Java 25
 - Spring Boot

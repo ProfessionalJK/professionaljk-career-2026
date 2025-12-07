@@ -3,6 +3,7 @@ package com.professionaljk.orders.service;
 import com.professionaljk.orders.model.Order;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -10,18 +11,33 @@ import java.util.Optional;
 @Service
 public class OrderService {
 
+    public final List<Order> orders = new ArrayList<>(Arrays.asList(
+            new Order(1, "Laptop", 1, 70000.00),
+            new Order(2, "Mouse", 2, 1500.50),
+            new Order(3, "Keyboard", 1, 3200.00)
+    ));
+
     public List<Order> getAllOrders() {
-        return Arrays.asList(
-                new Order(1, "Laptop", 1, 70000.00),
-                new Order(2, "Mouse", 2, 1500.50),
-                new Order(3, "Keyboard", 1, 3200.00)
-        );
+        return new ArrayList<>(orders);
     }
 
     public Optional<Order> getOrderById(int id) {
-        return getAllOrders()
-                .stream()
-                .filter(e -> e.getId() == id)
-                .findFirst();
+        return orders.stream().filter(e -> e.getId() == id).findFirst();
+    }
+
+    public Optional<Order> createOrder(Order orderRequest) {
+        if (!isValidRequest(orderRequest)) {
+            return Optional.empty();
+        }
+        int newId = orders.stream().mapToInt(Order::getId).max().orElse(0) + 1;
+        Order newOrder = new Order(newId, orderRequest.getItemName(), orderRequest.getQuantity(), orderRequest.getPrice());
+        orders.add(newOrder);
+        return Optional.of(newOrder);
+    }
+
+    public boolean isValidRequest(Order o) {
+        return o.getItemName() != null && !o.getItemName().isEmpty()
+                && o.getQuantity() > 0
+                && o.getPrice() >= 0;
     }
 }
