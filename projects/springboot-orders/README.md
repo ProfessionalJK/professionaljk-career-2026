@@ -97,3 +97,10 @@ GET http://localhost:8080/orders/1
 - Spring Boot
 - Maven
 - REST API
+
+## API Documentation (Swagger)
+After adding springdoc dependency and starting the app:
+- OpenAPI JSON: http://localhost:8080/v3/api-docs
+- Swagger UI: http://localhost:8080/swagger-ui.html   (or /swagger-ui/index.html)
+
+The UI lists available endpoints, request/response schemas for Order, and allows trying calls from browser.
