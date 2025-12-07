@@ -3,10 +3,7 @@ package com.professionaljk.orders.service;
 import com.professionaljk.orders.model.Order;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class OrderService {
@@ -56,5 +53,17 @@ public class OrderService {
             }
         }
         return Optional.empty();
+    }
+
+    public boolean deleteOrderById(int id) {
+        Iterator<Order> it = orders.iterator();
+        while (it.hasNext()) {
+            Order o = it.next();
+            if (o.getId() == id) {
+                it.remove();
+                return true;
+            }
+        }
+        return false;
     }
 }

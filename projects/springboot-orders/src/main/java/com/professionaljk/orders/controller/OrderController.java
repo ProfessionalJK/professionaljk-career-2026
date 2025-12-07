@@ -55,4 +55,17 @@ public class OrderController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
+        if (id <= 0) {
+            return ResponseEntity.badRequest().build(); // or 404 per your policy
+        }
+        boolean deleted = orderService.deleteOrderById(id);
+        if (deleted) {
+            return ResponseEntity.noContent().build(); // 204
+        } else {
+            return ResponseEntity.notFound().build(); // 404
+        }
+    }
+
 }

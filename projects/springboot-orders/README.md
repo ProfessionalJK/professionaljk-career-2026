@@ -82,6 +82,16 @@ GET http://localhost:8080/orders/1
 404 Not Found
 ```
 
+- `DELETE /orders/{id}` -> Delete an order by id.
+**Success (204)**
+```STATUS
+204 No Content
+```
+**Failure (404)**
+```STATUS
+404 Not Found
+```
+
 ### Tech Stack
 - Java 25
 - Spring Boot
