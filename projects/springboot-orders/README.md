@@ -104,3 +104,11 @@ After adding springdoc dependency and starting the app:
 - Swagger UI: http://localhost:8080/swagger-ui.html   (or /swagger-ui/index.html)
 
 The UI lists available endpoints, request/response schemas for Order, and allows trying calls from browser.
+
+## Request Logging
+A RequestLoggingInterceptor logs all incoming HTTP requests:
+
+Format:
+<ISO_TIMESTAMP> Request → [<METHOD>] <PATH>
+
+To disable logging, remove or comment out the interceptor registration in WebMvcConfig.
