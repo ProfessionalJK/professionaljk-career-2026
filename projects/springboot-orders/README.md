@@ -19,7 +19,22 @@ Example Response
     {"id": 3, "itemName": "Keyboard", "quantity": 1, "price": 3200.00},
 ]
 ```
-- 
+- `GET /orders/{id}`
+
+Fetch a single order by id.
+
+**Request**
+GET http://localhost:8080/orders/1
+
+**Success (200)**
+```json
+{
+  "id": 1,
+  "itemName": "Laptop",
+  "quantity": 1,
+  "price": 70000.0
+}
+```
 
 ### Tech Stack
 - Java 25
