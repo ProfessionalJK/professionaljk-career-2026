@@ -112,3 +112,10 @@ Format:
 <ISO_TIMESTAMP> Request → [<METHOD>] <PATH>
 
 To disable logging, remove or comment out the interceptor registration in WebMvcConfig.
+
+## Exception Handling
+Global exception handling is implemented using @ControllerAdvice in GlobalExceptionHandler.java. It handles:
+- ResourceNotFoundException: Returns 404 Not Found with error message.
+- MethodArgumentNotValidException: Returns 400 Bad Request with validation error details.
+- Generic Exception: Returns 500 Internal Server Error with error message.
+- This ensures consistent error responses across the API.
