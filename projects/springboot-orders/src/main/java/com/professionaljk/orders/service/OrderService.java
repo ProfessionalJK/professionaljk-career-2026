@@ -1,6 +1,8 @@
 package com.professionaljk.orders.service;
 
 import com.professionaljk.orders.model.Order;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,6 +16,7 @@ public class OrderService {
             new Order(3, "Keyboard", 1, 3200.00)
     ));
 
+    @Cacheable("ordersCache")
     public List<Order> getAllOrders() {
         return new ArrayList<>(orders);
     }
@@ -22,6 +25,7 @@ public class OrderService {
         return orders.stream().filter(e -> e.getId() == id).findFirst();
     }
 
+    @CacheEvict(value = "ordersCache", allEntries = true)
     public Optional<Order> createOrder(Order orderRequest) {
         if (!isValidRequest(orderRequest)) {
             return Optional.empty();
@@ -38,6 +42,7 @@ public class OrderService {
                 && o.getPrice() >= 0;
     }
 
+    @CacheEvict(value = "ordersCache", allEntries = true)
     public Optional<Order> updateOrder(int id, Order update) {
         for (int i = 0; i < orders.size(); i++) {
             Order existing = orders.get(i);
@@ -55,6 +60,7 @@ public class OrderService {
         return Optional.empty();
     }
 
+    @CacheEvict(value = "ordersCache", allEntries = true)
     public boolean deleteOrderById(int id) {
         Iterator<Order> it = orders.iterator();
         while (it.hasNext()) {

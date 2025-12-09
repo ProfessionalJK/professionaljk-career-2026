@@ -119,3 +119,14 @@ Global exception handling is implemented using @ControllerAdvice in GlobalExcept
 - MethodArgumentNotValidException: Returns 400 Bad Request with validation error details.
 - Generic Exception: Returns 500 Internal Server Error with error message.
 - This ensures consistent error responses across the API.
+
+## Caching (ordersCache)
+
+- GET /orders is cached using Spring Cache abstraction.
+- Cache name: ordersCache
+- Invalidation happens automatically on POST, PUT, DELETE.
+- Benefits:
+    - Faster response time
+    - Reduced repeated data loading
+- Debugging:
+    - Disable caching by removing @EnableCaching in CacheConfig
